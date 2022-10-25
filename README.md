@@ -9,7 +9,7 @@ SLANG is separated into three steps:
 2. Among-samples clustering (orthology inference): Consensus sequences of the assembled loci are then clustered according to their similarity among all samples. Orthologous loci are therefore grouped together. Multiple consensus sequences of a single sample within a cluster (paralogous or oversplitted loci) are filtered. Clusters not meeting the minimum samples per locus count are also filtered.
 3. Reference-based SNP calling: SNPs are then called by mapping reads sample per sample to the consensus sequence made during among-samples clustering. 
 
-The resulting SNPs are outputted in the VCF format and can be used for downstream phylogenetic inference, population genetic or phylogeographical studies.
+The resulting SNPs are outputted in the VCF format and can be used for downstream phylogenetic inference, population genetic or phylogeographical studies. In order to get a SNP matrix, the CLI tool 'SLANG_vcf_to_SNPs.py' can be used.
 
 ![SLANG](https://user-images.githubusercontent.com/94844710/161264733-1c37a2c5-4bfe-4893-ba3a-68b2b108c625.png)
 
