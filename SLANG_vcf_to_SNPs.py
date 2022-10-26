@@ -3,10 +3,10 @@ SLANG VCF to SNP matrix.py
 This tool parses VCF files outputted by SLANG and computes a SNP matrix.
 """
 
-__version__ = '0.1'
+__version__ = '0.2'
 __author__ = 'Marco Dorfner'
 __email__ = 'marco.dorfner@ur.de'
-__date__ = '2022-10-18'
+__date__ = '2022-10-26'
 
 
 import argparse
@@ -39,6 +39,7 @@ class SLANG_vcf_to_SNP_matrix:
             '-o', '--out',
             metavar = '',
             type = str,
+            default = os.path.join(os.path.abspath(os.getcwd()), 'snp_matrix.phylip'),
             help = 'output path and name. Default in current directory.'
         )
 
