@@ -3,14 +3,19 @@ remove missing data from (SLANG) vcf
 A CLI tool to parsimonially remove samples with missing data 
 from a (SLANG) vcf file.
 
+New in 0.2:
+- fixed error in filter_missing_data_samples_from_vcf(), where elements
+    of the list with samples to keep would be incorrectly made, leading
+    to wrong filtering of samples to remove.
+
 Planned for further releases:
 - vcf filtering without the need of a distance matrix file (.dst/.dist)
 """
 
-__version__ = '0.1'
+__version__ = '0.2'
 __author__ = 'Marco Dorfner'
 __email__ = 'marco.dorfner@ur.de'
-__date__ = '2022-11-24'
+__date__ = '2022-12-05'
 
 
 import argparse
@@ -106,9 +111,9 @@ class rm_missing_data_from_vcf:
         Returns filtered vcf as a pandas df.'''
         
         all_samples = vcf_df.columns.tolist()[9:]
-        samples_to_remove = self.get_remaining_samples(infile_dst)
-        samples_to_keep = [i for i in all_samples if i not in samples_to_remove]
-        filtered_vcf_df = vcf_df.drop(samples_to_keep, axis=1)
+        samples_to_keep = [sample.strip() for sample in self.get_remaining_samples(infile_dst)]
+        samples_to_remove = [sample for sample in all_samples if sample not in samples_to_keep]
+        filtered_vcf_df = vcf_df.drop(samples_to_remove, axis=1)
         
         return filtered_vcf_df
 
